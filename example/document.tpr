@@ -1,0 +1,11 @@
+use ltjsarticle as documentclass
+use amsmath as package
+use amssymb, amsfonts as package
+
+define macro Set! Set in math section:
+    mathbb{Set}
+
+document:
+    displaymath:
+        exists x in Set! R [ x^ 2 = 1 ]
+
