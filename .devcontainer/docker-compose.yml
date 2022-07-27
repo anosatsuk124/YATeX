@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  dev:
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/work
+    tmpfs: /work/target:uid=1000,gid=1000,exec 
