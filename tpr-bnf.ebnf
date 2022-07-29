@@ -1,1 +1,40 @@
-source := block*
+document_statement = "document:" "\n" (indent (function | document_literal | tex_command) "\n")*
+
+
+let_binding_definition =
+    "let " identifier_string separater (param separater)* separater* "="
+    (literal|expression)
+
+identifier = let_binding_identifier | tex_command_identifier
+
+let_binding_identifier = identifier_string
+
+tex_command_identifier = identifier_string
+
+identifier_string = <ascii_character>+
+
+separater = " "+
+
+indent = ("\t" | " ")+
+
+function = let_binding_identifier | let_binding_identifier separater (let_binding_identifier | literal)+
+
+variable = let_binding_identifier
+
+
+
+object = function | variable | literal
+
+expression = object
+
+
+document_string = <utf8_character>+
+
+literal =
+    string_literal | numeric_literal | boolean_literal | tex_math_expression_literal
+
+string_literal = "\"" (<utf8_character> | escape_literal) "\""
+
+escape_literal = "\\"
+
+macro_statement
